@@ -21,16 +21,56 @@ input[type="search"] {
   grid-column: span 2;
 }
 
+.header h2 {
+  font-weight: 100;
+}
+
 .search-form {
   padding: 32px;
   display: flex;
   justify-content: center;
-  background: #44f;
+  background-image: url(https://images.unsplash.com/photo-1571331245216-3f720e781a94?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80);
+  background-position: center;
+  background-size: cover;
   border-radius: 4px;
+}
+
+.search-form div {
+  background-color: #fff;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.search-form button {
+  background-color: #1f86ff;
+  color: #fff;
+  padding: 8px 24px 8px 24px;
+  box-shadow: inset 0px -3px 7px 0px #1f86ff;
+  border-radius: 3px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  padding: 9px 23px;
+  text-decoration: none;
+}
+
+.search-form button:hover {
+  background: linear-gradient(to bottom, #1f86ff 5%, #2dabf9 100%);
+  background-color: #0688fa;
+}
+.search-form button:active {
+  position: relative;
+  top: 1px;
 }
 
 .search-form input {
   min-width: 300px;
+  border: none;
+  box-shadow: none;
+  outline: none;
 }
 
 .search-form .suggestions {
@@ -52,6 +92,11 @@ input[type="search"] {
   margin-top: 16px;
 }
 
+.filters .location-title {
+  color: #999;
+  margin: 16px 0 8px 0;
+}
+
 .filters fieldset {
   border: none;
   display: flex;
@@ -61,6 +106,7 @@ input[type="search"] {
 
 .filters input {
   margin-left: 0;
+  margin-right: 8px;
 }
 
 .results {
@@ -76,7 +122,7 @@ input[type="search"] {
   padding: 16px;
   cursor: pointer;
   display: grid;
-  grid-template-columns: 50px auto auto auto;
+  grid-template-columns: 50px auto 1fr 1fr;
   grid-gap: 8px;
   align-items: center;
 }
