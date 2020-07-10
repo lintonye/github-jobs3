@@ -1,5 +1,6 @@
 body {
   background-color: #f6f7fb;
+  font: 1em sans-serif;
 }
 
 input[type="search"] {
