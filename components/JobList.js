@@ -1,4 +1,5 @@
 import MockPositions from "./mock-positions.json";
+import { useState, useEffect } from "react";
 
 function Header() {
   return (
@@ -60,8 +61,34 @@ function JobCard({
   );
 }
 
+function useJobs() {
+  const [status, setStatus] = useState("initial");
+  const [error, setError] = useState(null);
+  const [jobs, setJobs] = useState([]);
+  const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+  const destUrl = `https://jobs.github.com/positions.json`;
+  const url = `${proxyUrl}${destUrl}`;
+  useEffect(() => {
+    async function loadData() {
+      try {
+        setStatus("loading");
+        setError(null);
+        const res = await fetch(url);
+        const json = await res.json();
+        setJobs(json);
+      } catch (error) {
+        setError("Failed to fetch");
+      } finally {
+        setStatus("done");
+      }
+    }
+    loadData();
+  }, [url]);
+  return { jobs, status, error };
+}
+
 function Results() {
-  const jobs = MockPositions;
+  const { jobs } = useJobs();
   return (
     <div className="results">
       {jobs.map((job) => (
