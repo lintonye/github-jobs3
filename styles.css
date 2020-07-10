@@ -13,7 +13,7 @@ input[type="search"] {
 .job-list {
   display: grid;
   grid-gap: 16px;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: minmax(300px, auto) 1fr;
 }
 
 .header {
@@ -93,7 +93,8 @@ input[type="search"] {
 }
 
 .filters .location-title {
-  color: #999;
+  color: #aaa;
+  font-weight: 600;
   margin: 16px 0 8px 0;
 }
 
@@ -107,6 +108,10 @@ input[type="search"] {
 .filters input {
   margin-left: 0;
   margin-right: 8px;
+}
+
+.filters input[type="search"] {
+  width: 100%;
 }
 
 .results {
