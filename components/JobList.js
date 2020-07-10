@@ -3,7 +3,7 @@ import MockPositions from "./mock-positions.json";
 function Header() {
   return (
     <div className="header">
-      Github Jobs
+      <h2>Github Jobs</h2>
       <form className="search-form">
         <input type="search" name="" />
         <button>Search</button>
@@ -20,13 +20,13 @@ function Filters() {
         Full time
       </label>
       <label>
-        LOCATION
+        <div>LOCATION</div>
         <input type="search" />
       </label>
       <fieldset>
         {locations.map((location) => (
           <label key={location}>
-            <input type="radio" />
+            <input type="radio" value={location} name="location" />
             {location}
           </label>
         ))}
@@ -46,9 +46,10 @@ function JobCard({
 }) {
   return (
     <article className="job-card">
-      <div className="title">{title}</div>
       <img className="logo" src={company_logo} />
       <div className="company">{company}</div>
+      <div className="title">{title}</div>
+      <div className="type">{type}</div>
       <div className="location">{location}</div>
       <div className="created-at">{created_at}</div>
     </article>
