@@ -1,6 +1,7 @@
 body {
   background-color: #f6f7fb;
   font: 1em sans-serif;
+  color: #034680;
 }
 
 input[type="search"] {
@@ -232,6 +233,27 @@ input[type="search"] {
   list-style: none;
 }
 
+.job-details {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-gap: 48px;
+  margin-top: 16px;
+  line-height: 1.5em;
+}
+
+.job-details h2 {
+  font-size: 1em;
+  text-transform: uppercase;
+  color: #999;
+  margin-top: 36px;
+}
+
 .job-details .logo {
-  width: 80px;
+  width: 100px;
+}
+
+.job-details .created-at {
+  font-size: 0.9em;
+  color: #999;
+  margin-bottom: 16px;
 }
