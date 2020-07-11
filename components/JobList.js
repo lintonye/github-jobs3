@@ -1,32 +1,37 @@
 import MockPositions from "./mock-positions.json";
 import { useState, useEffect } from "react";
 
-function Header({ onKeywordChange }) {
+function SearchForm({ onKeywordChange }) {
   const [term, setTerm] = useState("");
+  return (
+    <form
+      className="search-form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        onKeywordChange(term);
+      }}
+    >
+      <input
+        type="search"
+        value={term}
+        onChange={(e) => setTerm(e.target.value)}
+      />
+      <button>Search</button>
+    </form>
+  );
+}
+
+function Header({ children }) {
   return (
     <div className="header">
       <h2>
         <strong>Github</strong> Jobs
       </h2>
-      <div className="hero">
-        <form
-          className="search-form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            onKeywordChange(term);
-          }}
-        >
-          <input
-            type="search"
-            value={term}
-            onChange={(e) => setTerm(e.target.value)}
-          />
-          <button>Search</button>
-        </form>
-      </div>
+      <div className="hero">{children}</div>
     </div>
   );
 }
+
 function Filters() {
   const locations = ["London", "Amsterdam", "New York", "Berlin"];
   return (
@@ -114,7 +119,9 @@ export function JobList() {
 
   return (
     <div className="job-list">
-      <Header onKeywordChange={(k) => setKeyword(k)} />
+      <Header>
+        <SearchForm onKeywordChange={(k) => setKeyword(k)} />
+      </Header>
       <Filters />
       <Results jobs={jobs} />
     </div>
