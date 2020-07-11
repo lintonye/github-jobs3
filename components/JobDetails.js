@@ -1,4 +1,5 @@
 import React from "react";
+import { Header } from "./Header";
 export function JobDetailsStatic({
   type,
   company,
@@ -31,6 +32,7 @@ export function JobDetailsStatic({
 export function JobDetails({ id }) {
   return (
     <div>
+      <Header />
       <JobDetailsStatic />
     </div>
   );
