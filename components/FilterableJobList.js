@@ -1,32 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { JobList } from "./JobList";
-
-function SearchForm({ onKeywordChange }) {
-  const [term, setTerm] = useState("");
-  function dispatchKeywordChange(k) {
-    typeof onKeywordChange === "function" && onKeywordChange(k);
-  }
-  return (
-    <form
-      className="search-form"
-      onSubmit={(e) => {
-        e.preventDefault();
-        dispatchKeywordChange(term);
-      }}
-    >
-      <input
-        type="search"
-        value={term}
-        onChange={(e) => {
-          setTerm(e.target.value);
-          if (e.target.value.length === 0) dispatchKeywordChange("");
-        }}
-      />
-      <button>Search</button>
-    </form>
-  );
-}
+import { SearchForm } from "./SearchForm";
 
 function Header({ children }) {
   return (
