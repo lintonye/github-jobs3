@@ -95,20 +95,20 @@ input[type="search"] {
 .suggestions.loading {
   min-width: 160px;
   min-height: 20px;
-  padding: 8px;
+  padding: 16px;
   background: #fff;
 }
 
 .suggestions li div {
-  padding: 4px 8px 4px 8px;
+  padding: 8px 16px 8px 16px;
 }
 
 .suggestions li:first-child div {
-  padding-top: 8px;
+  padding-top: 16px;
 }
 
 .suggestions li:last-child div {
-  padding-bottom: 8px;
+  padding-bottom: 16px;
 }
 
 .suggestions li:hover {
