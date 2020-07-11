@@ -1,5 +1,7 @@
+import React from "react";
 import MockPositions from "./mock-positions.json";
 import { useState, useEffect } from "react";
+import { Results } from "./Results";
 
 function SearchForm({ onKeywordChange }) {
   const [term, setTerm] = useState("");
@@ -62,27 +64,6 @@ function Filters() {
   );
 }
 
-function JobCard({
-  type,
-  company,
-  company_logo,
-  location,
-  title,
-  created_at,
-  id,
-}) {
-  return (
-    <article className="job-card">
-      <img className="logo" src={company_logo} />
-      <div className="company">{company}</div>
-      <div className="title">{title}</div>
-      <div className="type">{type}</div>
-      <div className="location">{location}</div>
-      <div className="created-at">{created_at}</div>
-    </article>
-  );
-}
-
 function useJobs({ keyword }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -109,19 +90,9 @@ function useJobs({ keyword }) {
   return { jobs, isLoading, error };
 }
 
-function Results({ jobs }) {
-  return (
-    <div className="results">
-      {jobs.map((job) => (
-        <JobCard {...job} key={job.id} />
-      ))}
-    </div>
-  );
-}
-
 export function JobList() {
   const [keyword, setKeyword] = useState("");
-  const { jobs } = useJobs({ keyword });
+  const { jobs, isLoading, error } = useJobs({ keyword });
 
   return (
     <div className="job-list">
@@ -129,7 +100,11 @@ export function JobList() {
         <SearchForm onKeywordChange={(k) => setKeyword(k)} />
       </Header>
       <Filters />
-      <Results jobs={jobs} />
+      {error ? (
+        <div className="error">{error}</div>
+      ) : (
+        <Results jobs={jobs} isLoading={isLoading} />
+      )}
     </div>
   );
 }

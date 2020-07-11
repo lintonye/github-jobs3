@@ -120,6 +120,10 @@ input[type="search"] {
   grid-gap: 16px;
 }
 
+.error {
+  color: #f00;
+}
+
 .job-card {
   background: #fff;
   border-radius: 4px;
@@ -135,6 +139,29 @@ input[type="search"] {
 .job-card .logo {
   width: 50px;
   grid-row: span 3;
+}
+
+.job-card .loading-logo {
+  width: 50px;
+  height: 80px;
+  border: none;
+}
+
+@keyframes shimming {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 100%;
+  }
+}
+
+.loading {
+  background: linear-gradient(to left, #f0f0f0, #ddd, #f0f0f0);
+  background-size: 200%;
+  animation: shimming 1s alternate infinite running;
+  min-height: 20px;
+  min-width: 20px;
 }
 
 .job-card .company {
