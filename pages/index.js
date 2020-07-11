@@ -1,5 +1,10 @@
 import { FilterableJobList } from "../components/FilterableJobList";
+import { Layout } from "../components/Layout";
 
 export default function Home() {
-  return <FilterableJobList />;
+  return (
+    <Layout>
+      <FilterableJobList />
+    </Layout>
+  );
 }
