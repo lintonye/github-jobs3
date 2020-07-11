@@ -6,12 +6,12 @@ function Header() {
       <h2>
         <strong>Github</strong> Jobs
       </h2>
-      <form className="search-form">
-        <div>
+      <div className="search-form-container">
+        <form className="search-form">
           <input type="search" name="" />
           <button>Search</button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
