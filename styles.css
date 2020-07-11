@@ -120,6 +120,10 @@ input[type="search"] {
   grid-gap: 16px;
 }
 
+.error {
+  color: #f00;
+}
+
 .job-card {
   background: #fff;
   border-radius: 4px;
