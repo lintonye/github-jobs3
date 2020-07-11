@@ -28,13 +28,13 @@ const SuggestionsAPI = {
 };
 export function useSearchSuggestions(keyword) {
   const [suggestions, setSuggestions] = useState([]);
-  const [status, setStatus] = useState("initial");
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    setStatus("loading");
+    setIsLoading(true);
     SuggestionsAPI.load(keyword).then((result) => {
       setSuggestions(result);
-      setStatus("done");
+      setIsLoading(false);
     });
   }, [keyword]);
-  return { suggestions, status };
+  return { suggestions, isLoading };
 }
