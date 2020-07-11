@@ -84,7 +84,7 @@ function JobCard({
 }
 
 function useJobs({ keyword }) {
-  const [status, setStatus] = useState("initial");
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [jobs, setJobs] = useState([]);
   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
@@ -93,7 +93,7 @@ function useJobs({ keyword }) {
   useEffect(() => {
     async function loadData() {
       try {
-        setStatus("loading");
+        setIsLoading(true);
         setError(null);
         const res = await fetch(url);
         const json = await res.json();
@@ -101,12 +101,12 @@ function useJobs({ keyword }) {
       } catch (error) {
         setError("Failed to fetch");
       } finally {
-        setStatus("done");
+        setIsLoading(false);
       }
     }
     loadData();
   }, [url]);
-  return { jobs, status, error };
+  return { jobs, isLoading, error };
 }
 
 function Results({ jobs }) {
