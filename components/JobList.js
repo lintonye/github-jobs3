@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 function JobCard({
   type,
@@ -10,14 +11,16 @@ function JobCard({
   id,
 }) {
   return (
-    <article className="job-card">
-      <img className="logo" src={company_logo} />
-      <div className="company">{company}</div>
-      <div className="title">{title}</div>
-      <div className="type">{type}</div>
-      <div className="location">{location}</div>
-      <div className="created-at">{created_at}</div>
-    </article>
+    <Link href={`/jobs/${id}`}>
+      <article className="job-card">
+        <img className="logo" src={company_logo} />
+        <div className="company">{company}</div>
+        <div className="title">{title}</div>
+        <div className="type">{type}</div>
+        <div className="location">{location}</div>
+        <div className="created-at">{created_at}</div>
+      </article>
+    </Link>
   );
 }
 
