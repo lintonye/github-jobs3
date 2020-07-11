@@ -8,7 +8,7 @@ function Header({ onKeywordChange }) {
       <h2>
         <strong>Github</strong> Jobs
       </h2>
-      <div className="search-form-container">
+      <div className="hero">
         <form
           className="search-form"
           onSubmit={(e) => {
