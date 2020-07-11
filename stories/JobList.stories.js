@@ -1,20 +1,20 @@
 import React from "react";
-import { Results } from "../components/Results";
+import { JobList } from "../components/JobList";
 import "../styles.css";
 import MockLocations from "./mock-positions.json";
 
 export default {
-  title: "Results",
+  title: "JobList",
 };
 
 export function Loading() {
-  return <Results isLoading={true} />;
+  return <JobList isLoading={true} />;
 }
 
 export function Empty() {
-  return <Results jobs={[]} />;
+  return <JobList jobs={[]} />;
 }
 
 export function WithData() {
-  return <Results jobs={MockLocations} />;
+  return <JobList jobs={MockLocations} />;
 }

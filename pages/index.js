@@ -1,5 +1,5 @@
-import { JobList } from "../components/JobList";
+import { FilterableJobList } from "../components/FilterableJobList";
 
 export default function Home() {
-  return <JobList />;
+  return <FilterableJobList />;
 }
