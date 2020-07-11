@@ -240,10 +240,10 @@ input[type="search"] {
 
 .job-details {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 200px 1fr;
   grid-gap: 48px;
+  line-height: 1.5;
   margin-top: 16px;
-  line-height: 1.5em;
 }
 
 .job-details h2 {
@@ -251,6 +251,10 @@ input[type="search"] {
   text-transform: uppercase;
   color: #999;
   margin-top: 36px;
+}
+
+.job-details .how-to-apply {
+  overflow-wrap: break-word;
 }
 
 .job-details .logo {
