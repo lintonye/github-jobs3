@@ -1,5 +1,4 @@
 import React from "react";
-import MockPositions from "./mock-positions.json";
 import { useState, useEffect } from "react";
 import { Results } from "./Results";
 
