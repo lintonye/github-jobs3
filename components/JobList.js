@@ -1,15 +1,26 @@
 import MockPositions from "./mock-positions.json";
 import { useState, useEffect } from "react";
 
-function Header() {
+function Header({ onKeywordChange }) {
+  const [term, setTerm] = useState("");
   return (
     <div className="header">
       <h2>
         <strong>Github</strong> Jobs
       </h2>
       <div className="search-form-container">
-        <form className="search-form">
-          <input type="search" name="" />
+        <form
+          className="search-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            onKeywordChange(term);
+          }}
+        >
+          <input
+            type="search"
+            value={term}
+            onChange={(e) => setTerm(e.target.value)}
+          />
           <button>Search</button>
         </form>
       </div>
@@ -61,12 +72,12 @@ function JobCard({
   );
 }
 
-function useJobs() {
+function useJobs({ keyword }) {
   const [status, setStatus] = useState("initial");
   const [error, setError] = useState(null);
   const [jobs, setJobs] = useState([]);
   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-  const destUrl = `https://jobs.github.com/positions.json`;
+  const destUrl = `https://jobs.github.com/positions.json?search=${keyword}`;
   const url = `${proxyUrl}${destUrl}`;
   useEffect(() => {
     async function loadData() {
@@ -87,8 +98,7 @@ function useJobs() {
   return { jobs, status, error };
 }
 
-function Results() {
-  const { jobs } = useJobs();
+function Results({ jobs }) {
   return (
     <div className="results">
       {jobs.map((job) => (
@@ -99,11 +109,14 @@ function Results() {
 }
 
 export function JobList() {
+  const [keyword, setKeyword] = useState("");
+  const { jobs } = useJobs({ keyword });
+
   return (
     <div className="job-list">
-      <Header />
+      <Header onKeywordChange={(k) => setKeyword(k)} />
       <Filters />
-      <Results />
+      <Results jobs={jobs} />
     </div>
   );
 }
