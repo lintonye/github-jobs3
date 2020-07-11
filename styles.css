@@ -25,7 +25,7 @@ input[type="search"] {
   font-weight: 100;
 }
 
-.search-form {
+.search-form-container {
   padding: 32px;
   display: flex;
   justify-content: center;
@@ -35,7 +35,7 @@ input[type="search"] {
   border-radius: 4px;
 }
 
-.search-form div {
+.search-form {
   background-color: #fff;
   padding: 4px;
   border-radius: 4px;
