@@ -1,29 +1,23 @@
 import { useState, useEffect } from "react";
-export function useJobs({ keyword, id }) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [jobs, setJobs] = useState([]);
+import { useQuery } from "react-query";
+
+function fetchJobs(key, query) {
   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-  const destUrl = id
-    ? `https://jobs.github.com/positions/${id}.json`
-    : `https://jobs.github.com/positions.json?search=${keyword}`;
+  const destUrl =
+    key === "job-by-id"
+      ? `https://jobs.github.com/positions/${query}.json`
+      : `https://jobs.github.com/positions.json?search=${query}`;
   const url = `${proxyUrl}${destUrl}`;
-  useEffect(() => {
-    async function loadData() {
-      try {
-        setIsLoading(true);
-        setError(null);
-        const res = await fetch(url);
-        const json = await res.json();
-        setJobs(json);
-      } catch (error) {
-        setError("Failed to fetch");
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    loadData();
-  }, [url]);
+
+  return fetch(url).then((response) => response.json());
+}
+
+export function useJobs({ keyword, id }) {
+  const { data: jobs, isLoading, error } = useQuery(
+    id ? ["job-by-id", id] : ["jobs", keyword],
+    fetchJobs
+  );
+
   return { jobs, isLoading, error };
 }
 

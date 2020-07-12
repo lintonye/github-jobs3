@@ -12,7 +12,8 @@
   "dependencies": {
     "next": "latest",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "react-query": "^2.4.15"
   },
   "license": "ISC",
   "devDependencies": {
