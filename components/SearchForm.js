@@ -41,8 +41,10 @@ export function SearchFormStatic({
 export function SearchForm({ onKeywordChange }) {
   const [term, setTerm] = useState("");
   const { suggestions, isLoading } = useSearchSuggestions(term);
+  const [showSuggestions, setShowSuggestions] = useState(true);
   function dispatchKeywordChange(k) {
     typeof onKeywordChange === "function" && onKeywordChange(k);
+    setShowSuggestions(false);
   }
 
   return (
@@ -53,11 +55,15 @@ export function SearchForm({ onKeywordChange }) {
       }}
       onChange={(e) => {
         setTerm(e.target.value);
+        setShowSuggestions(true);
         if (e.target.value.length === 0) dispatchKeywordChange("");
       }}
-      onSuggestionClick={(s) => setTerm(s)}
+      onSuggestionClick={(s) => {
+        setTerm(s);
+        dispatchKeywordChange(s);
+      }}
       value={term}
-      suggestions={suggestions}
+      suggestions={showSuggestions && suggestions}
       isLoading={isLoading}
     />
   );

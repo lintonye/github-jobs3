@@ -14,15 +14,15 @@ const terms = [
 const SuggestionsAPI = {
   load(keyword) {
     return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(
-          keyword.length === 0
-            ? []
-            : terms.filter((term) =>
-                term.toLowerCase().includes(keyword.toLowerCase())
-              )
-        );
-      }, 500);
+      if (keyword.length === 0) resolve([]);
+      else
+        setTimeout(() => {
+          resolve(
+            terms.filter((term) =>
+              term.toLowerCase().includes(keyword.toLowerCase())
+            )
+          );
+        }, 500);
     });
   },
 };
